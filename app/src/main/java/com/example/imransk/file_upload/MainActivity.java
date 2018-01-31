@@ -27,6 +27,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/*
+https://github.com/nbsp-team/MaterialFilePicker*/
+
+
 public class MainActivity extends AppCompatActivity {
     Button button, buttonUpload;
 
@@ -53,10 +57,18 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 new MaterialFilePicker()
                         .withActivity(MainActivity.this)
                         .withRequestCode(10)
+                        .withHiddenFiles(false)
+                        .withTitle("Open File")
                         .start();
+
+               /* new MaterialFilePicker()
+                        .withActivity(MainActivity.this)
+                        .withRequestCode(10)
+                        .start();*/
 
             }
         });
@@ -106,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                                     .build();
 
                             Request request = new Request.Builder()
-                                    .url("http://192.168.0.104/uploadfile/save_file.php")
+                                    .url(Config.UPLOAD_URL)
                                     .post(request_body)
                                     .build();
 
